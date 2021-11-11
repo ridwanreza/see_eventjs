@@ -1,17 +1,33 @@
+import { underline } from 'chalk'
 import React from 'react'
-import { View, Text, Pressable } from 'react-native'
-
+import { View, Text, Pressable, StatusBar, Image } from 'react-native'
+import Button from '../../components/button/Button'
+import Buttonsign from '../../components/button/Buttonsign'
 const Idx = (props) => {
     return (
         <View>
-            <Text>THIS IS INDEX</Text>
-            <Pressable style={{backgroundColor: 'green', width: 200, margin: 10}} onPress={() => props.navigation.navigate('SignIn')}>
-                <Text>Go To Sign In Screen</Text>
+            <View >
+            <StatusBar barStyle= 'dark-content' backgroundColor="transparent" translucent={true}/>
+                <Image 
+                    source={require('../../assets/splash.png')} 
+                    style= {{alignSelf: 'center', marginTop: 100}}
+                />            
+                <View style= {{justifyContent: 'center', alignItems: 'center', flexDirection: 'row', marginTop: 30}}>
+                <Image 
+                    source={require('../../assets/Event.png')} 
+                    style= {{resizeMode: 'stretch', height: 40, width: 56}}
+                />
+                    <Text style= {{fontSize: 32, marginLeft: 12, fontStyle: 'italic',}}>
+                            SeeEvent
+                    </Text>              
+                </View>
+            <Button text= "Sign Up" navigation = {() => props.navigation.navigate('SignUp')}/>
+            <Buttonsign text= "Sign In" navigation = {() => props.navigation.navigate('SignIn')}/>            
+            <Pressable style= {{alignSelf: 'center'}} onPress={() => props.navigation.navigate('GoToHomeScreen')}> 
+                <Text style= {{textDecorationLine: 'underline', color: '#3E89AE', marginTop: 10}}>Continue as guest</Text>               
             </Pressable>
-            <Pressable style={{backgroundColor: 'green', width: 200, margin: 10}} onPress={() => props.navigation.navigate('SignUp')}>
-                <Text>Go To SignUp Screen</Text>
-            </Pressable>
-            
+            <Text style= {{alignSelf: 'center', marginTop: 60}}>version v1.1.2</Text>            
+            </View>
         </View>
     )
 }
