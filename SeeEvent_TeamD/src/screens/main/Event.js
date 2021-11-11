@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const Explore = () => {
+const Event = () => {
     return (
         <View>
-            <Text>THIS IS HOME</Text>
+            <Text>this is my events</Text>
         </View>
     )
 }
 
-export default Explore
+export default Event
