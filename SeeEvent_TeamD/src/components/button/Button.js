@@ -3,7 +3,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 export default function Button(props) {
-  const navigation= useNavigation ()
+  //const navigation= useNavigation ()
   
   return (
     <View
@@ -23,7 +23,7 @@ export default function Button(props) {
           justifyContent: 'center',
           alignItems: 'center',
         }}
-        onPress={() => navigation.navigate('SignUp')}
+        onPress={props.navigation}
         >
         <Text style={{color: 'white', fontSize: 16}}>{props.text}</Text>
       </TouchableOpacity>
