@@ -18,7 +18,7 @@ export default function Button(props) {
           height: 56,
           backgroundColor: 'white',
           borderRadius: 10,
-          borderWidth: 2,
+          borderWidth: 1,
           borderColor: '#214457',
           justifyContent: 'center',
           alignItems: 'center',
