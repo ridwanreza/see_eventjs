@@ -15,7 +15,6 @@ import SavedEvents from '../screens/main/Profile/SavedEvents';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CreateMyevent from '../screens/main/MyEvent/CreateMyevent';
 import EventDetail from '../screens/main/MyEvent/EventDetail';
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 

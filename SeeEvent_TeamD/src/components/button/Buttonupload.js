@@ -12,7 +12,7 @@ export default function Button(props) {
         marginVertical: 10,
         width: '85%',
         height: 56,
-        // backgroundColor: 'white',
+        backgroundColor: 'white',
         borderRadius: 10,
         borderColor: '#214457',
         borderWidth: 2,

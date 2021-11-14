@@ -4,7 +4,6 @@ import HeaderMain from '../../components/header/HeaderMain';
 import CardEvent from '../../components/CardEvent';
 import Floatingicon from '../../components/Floatingicon';
 import {useNavigation} from '@react-navigation/core';
-
 const Event = props => {
   const navigation = useNavigation();
   return (

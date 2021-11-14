@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import HeaderWSearch from '../../components/header/HeaderWSearch'
 
-const Explore = () => {
+const Explore = (props) => {
     return (
         <View>
-            <Text>Explore</Text>
+            <HeaderWSearch></HeaderWSearch>
         </View>
     )
 }

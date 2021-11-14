@@ -15,7 +15,7 @@ export default function Button(props) {
         backgroundColor: 'white',
         borderRadius: 10,
         borderColor: '#214457',
-        borderWidth: 2,
+        borderWidth: 1,
       }}>
       <TouchableOpacity
         style={{

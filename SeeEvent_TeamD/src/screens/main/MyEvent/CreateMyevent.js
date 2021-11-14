@@ -42,8 +42,9 @@ export default function CreateMyevent(props) {
     let tempDate = new Date(currrentDate);
     let FDate =
       tempDate.getMonth() +
+      1 +
       '/' +
-      (tempDate.getDate() + 1) +
+      tempDate.getDate() +
       '/' +
       tempDate.getFullYear();
     let FTime = +tempDate.getHours() + ':' + tempDate.getMinutes();
