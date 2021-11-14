@@ -6,7 +6,7 @@ export default function Header(props) {
   return (
     <View>
       <LinearGradient colors={['rgba(14, 29, 37, 1)', 'rgba(33, 68, 87, 1)']}>
-        <StatusBar backgroundColor="transparent" translucent={true} />
+        <StatusBar barStyle= 'light-content' backgroundColor="transparent" translucent={true} />
         <View
           style={{
             width: '100%',
@@ -20,7 +20,7 @@ export default function Header(props) {
               flexDirection: 'row',
               marginHorizontal: 14,
             }}>
-            <TouchableOpacity style={{marginHorizontal: 14}}>
+            <TouchableOpacity style={{marginHorizontal: 14}} onPress={props.headernavigation}>
               <Icon name="arrow-back-outline" size={25} color={'white'} />
             </TouchableOpacity>
             <Text
