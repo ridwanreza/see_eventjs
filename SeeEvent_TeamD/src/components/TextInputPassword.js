@@ -3,6 +3,8 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 export default function TextInputPassword(props) {
   const [isOpen, setIsOpen] = React.useState(true);
+  const [isFocused, setIsFocused] = React.useState();
+
   return (
     <View
       style={{
@@ -10,7 +12,6 @@ export default function TextInputPassword(props) {
         alignItems: 'center',
         flexDirection: 'row',
         marginVertical: 10,
-        backgroundColor: 'white',
         width: '85%',
         height: 48,
         borderRadius: 10,
@@ -18,6 +19,8 @@ export default function TextInputPassword(props) {
         borderColor: 'grey',
         alignSelf: 'center',
         paddingRight: 10,
+        backgroundColor: 'white',
+        borderColor: isFocused ? 'black' : 'grey',
       }}>
       <TextInput
         placeholder={props.text}
@@ -26,7 +29,12 @@ export default function TextInputPassword(props) {
           justifyContent: 'center',
           paddingHorizontal: 10,
           fontSize: 20,
-        }}></TextInput>
+          width: '85%',
+          height: 48,
+        }}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+      />
       <TouchableOpacity>
         <Icon
           // style={{ top: 30, height: 30}}

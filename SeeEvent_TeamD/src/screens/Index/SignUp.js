@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, Pressable, StatusBar, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  StatusBar,
+  ScrollView,
+  Alert,
+} from 'react-native';
 import Header from '../../components/header/Header';
 import TextInputWIcon from '../../components/TextInputWIcon';
 import ButtonWhite from '../../components/button/Buttonwhite';
@@ -35,7 +42,9 @@ const SignUp = props => {
           <TextInputWIcon text="Email"></TextInputWIcon>
         </View>
         <View style={{marginBottom: 5}}>
-          <TextInputPassword text="Password"></TextInputPassword>
+          <TextInputPassword
+            text="Password"
+            isFocused={true}></TextInputPassword>
         </View>
         <View style={{marginBottom: 10}}>
           <TextInputPassword text="Confirm Password"></TextInputPassword>
@@ -48,7 +57,7 @@ const SignUp = props => {
         </View>
         <Pressable
           style={{alignSelf: 'center'}}
-          onPress={() => props.navigation.navigate('Idx')}>
+          onPress={() => Alert.alert(' ', 'Try Again Later')}>
           <Text
             style={{
               textDecorationLine: 'underline',

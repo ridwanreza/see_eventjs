@@ -22,7 +22,8 @@ export default function Button(props) {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'row',
-        }}>
+        }}
+        onPress={() => alert('Coming Soon')}>
         <Icon
           name={props.icon}
           size={25}
