@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 export default function Button(props) {
   //const navigation= useNavigation ()
-  
+
   return (
     <View
       style={{
@@ -23,8 +23,7 @@ export default function Button(props) {
           justifyContent: 'center',
           alignItems: 'center',
         }}
-        onPress={props.navigation}
-        >
+        onPress={props.navigation}>
         <Text style={{color: 'white', fontSize: 16}}>{props.text}</Text>
       </TouchableOpacity>
     </View>

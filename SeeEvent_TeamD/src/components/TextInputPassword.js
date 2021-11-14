@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-export default function TextInputWIcon(props) {
+export default function TextInputPassword(props) {
+  const [isOpen, setIsOpen] = React.useState(true);
   return (
     <View
       style={{
@@ -20,19 +21,19 @@ export default function TextInputWIcon(props) {
       }}>
       <TextInput
         placeholder={props.text}
+        secureTextEntry={isOpen ? true : false}
         style={{
           justifyContent: 'center',
           paddingHorizontal: 10,
           fontSize: 20,
-        }}
-        defaultValue={props.isi}></TextInput>
+        }}></TextInput>
       <TouchableOpacity>
         <Icon
           // style={{ top: 30, height: 30}}
           size={20}
           color={'grey'}
-          name={props.iconright}
-          onPress={props.klik}
+          onPress={() => setIsOpen(!isOpen)}
+          name={isOpen ? 'eye-off' : 'eye'}
         />
       </TouchableOpacity>
     </View>
