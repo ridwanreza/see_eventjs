@@ -2,6 +2,10 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 export default function CardProfile(props) {
   const navigation = useNavigation();
   return (
@@ -15,7 +19,7 @@ export default function CardProfile(props) {
           marginVertical: 8,
           backgroundColor: 'white',
           width: '85%',
-          height: 50,
+          height: hp('8'),
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',

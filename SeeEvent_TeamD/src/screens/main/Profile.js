@@ -3,9 +3,13 @@ import {View, Text, Pressable} from 'react-native';
 import HeaderMain from '../../components/header/HeaderMain';
 import CardPropImg from '../../components/CardPropImg';
 import CardProfile from '../../components/CardProfile';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const Explore = props => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, height: hp('100%')}}>
       <HeaderMain title_main="Profile" />
 
       <CardPropImg

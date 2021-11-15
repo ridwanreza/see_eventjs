@@ -2,6 +2,10 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 export default function Button(props) {
   //const navigation= useNavigation ()
 
@@ -12,12 +16,11 @@ export default function Button(props) {
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 10,
       }}>
       <TouchableOpacity
         style={{
           width: '85%',
-          height: 56,
+          height: hp('7%'),
           backgroundColor: '#214457',
           borderRadius: 10,
           justifyContent: 'center',
