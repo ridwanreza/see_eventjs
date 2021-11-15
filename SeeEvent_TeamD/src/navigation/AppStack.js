@@ -15,6 +15,10 @@ import SavedEvents from '../screens/main/Profile/SavedEvents';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CreateMyevent from '../screens/main/MyEvent/CreateMyevent';
 import EventDetail from '../screens/main/MyEvent/EventDetail';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -45,6 +49,7 @@ const btmNav = () => {
           backgroundColor: 'white',
           paddingBottom: 5,
           paddingTop: 5,
+          height: hp('7%'),
         },
         tabBarIcon: ({focused, size, color}) => {
           let iconName;
@@ -61,7 +66,11 @@ const btmNav = () => {
         },
       })}>
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Explore" component={Explore} />
+      <Tab.Screen
+        name="Explore"
+        component={Explore}
+        options={{tabBarHideOnKeyboard: true}}
+      />
       <Tab.Screen name="Event" component={Event} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>

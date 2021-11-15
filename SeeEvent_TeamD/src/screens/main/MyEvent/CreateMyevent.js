@@ -17,6 +17,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Button from '../../../components/button/Buttonupload';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 export default function CreateMyevent(props) {
   const countries = [
     'Photography',
@@ -64,7 +68,7 @@ export default function CreateMyevent(props) {
         title_sec="Create Event"
         navigation={() => props.navigation.navigate('Event')}
       />
-      <ScrollView contentContainerStyle={{flexGrow: 1, height: '150%'}}>
+      <ScrollView contentContainerStyle={{flexGrow: 1, height: hp('117%')}}>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <Image
             style={{
@@ -128,11 +132,12 @@ export default function CreateMyevent(props) {
           />
         </View>
         <TextComment text=" Event Details " />
+
+        <FooterSec
+          text="Create"
+          // navigation={() => props.navigation.navigate('Profile')}
+        />
       </ScrollView>
-      <FooterSec
-        text="Create"
-        // navigation={() => props.navigation.navigate('Profile')}
-      />
     </View>
   );
 }

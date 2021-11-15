@@ -1,6 +1,10 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 export default function Button(props) {
   return (
     <View
@@ -11,7 +15,7 @@ export default function Button(props) {
         alignItems: 'center',
         marginVertical: 10,
         width: '85%',
-        height: 56,
+        height: hp('7%'),
         backgroundColor: 'white',
         borderRadius: 10,
         borderColor: '#214457',

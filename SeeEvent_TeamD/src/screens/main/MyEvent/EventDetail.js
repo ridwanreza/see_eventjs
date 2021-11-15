@@ -5,6 +5,10 @@ import TextComment from '../../../components/TextComment';
 import Buttonsubmit from '../../../components/button/Buttonsubmit';
 import FooterDetailEvent from '../../../components/Footer/FooterDetailEvent';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 export default function EventDetail(props) {
   return (
     <View style={{flex: 1}}>
@@ -12,7 +16,7 @@ export default function EventDetail(props) {
         title_sec="Event Detail"
         navigation={() => props.navigation.navigate('Event')}
       />
-      <ScrollView contentContainerStyle={{flexGrow: 1, height: '400%'}}>
+      <ScrollView contentContainerStyle={{flexGrow: 1, height: hp('400%')}}>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <View
             style={{

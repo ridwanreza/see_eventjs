@@ -1,12 +1,15 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 export default function FooterSec(props) {
   return (
     <View style={{flex: 1, position: 'absolute', left: 0, right: 0, bottom: 0}}>
       <View
         style={{
-          height: 88,
+          height: hp('12%'),
           width: '100%',
           backgroundColor: 'white',
           justifyContent: 'center',
