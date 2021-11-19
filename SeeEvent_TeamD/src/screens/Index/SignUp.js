@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -16,7 +16,13 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {connect} from 'react-redux';
 const SignUp = props => {
+  const [fisrtname, setFirstname] = useState();
+  const [lastname, setLasname] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPasssword] = useState();
+  const [confirm, setConfirm] = useState();
   return (
     <View>
       <Header
@@ -36,26 +42,37 @@ const SignUp = props => {
             Join Us!
           </Text>
           <View style={{marginBottom: 5}}>
-            <TextInputWIcon text="First Name"></TextInputWIcon>
+            <TextInputWIcon
+              text="First Name"
+              ChangeText={text => setFirstname(text)}></TextInputWIcon>
           </View>
           <View style={{marginBottom: 5}}>
-            <TextInputWIcon text="Last Name"></TextInputWIcon>
+            <TextInputWIcon
+              text="Last Name"
+              ChangeText={text => setLasname(text)}></TextInputWIcon>
           </View>
           <View style={{marginBottom: 5}}>
-            <TextInputWIcon text="Email"></TextInputWIcon>
+            <TextInputWIcon
+              text="Email"
+              ChangeText={text => setEmail(text)}></TextInputWIcon>
           </View>
           <View style={{marginBottom: 5}}>
             <TextInputPassword
               text="Password"
-              isFocused={true}></TextInputPassword>
+              isFocused={true}
+              ChangeText={text => setPasssword(text)}></TextInputPassword>
           </View>
           <View style={{marginBottom: 10}}>
-            <TextInputPassword text="Confirm Password"></TextInputPassword>
+            <TextInputPassword
+              text="Confirm Password"
+              ChangeText={text => setConfirm(text)}></TextInputPassword>
           </View>
           <View style={{marginTop: 10, marginBottom: 10}}>
             <Button
               text="Sign Up"
-              navigation={() => props.navigation.navigate('SignIn')}
+              navigation={() =>
+                props.signup({fisrtname, lastname, email, password, confirm})
+              }
             />
           </View>
           <Pressable
@@ -106,4 +123,13 @@ const SignUp = props => {
   );
 };
 
-export default SignUp;
+const reduxDispatchSignup = dispatch => ({
+  signup: dataSignup => dispatch({type: 'SIGNUP', data: dataSignup}),
+});
+
+const reduxState = state => ({
+  isLoadingSignup: state.signup.isLoadingSignup,
+  token: state.signup.token,
+});
+
+export default connect(reduxState, reduxDispatchSignup)(SignUp);

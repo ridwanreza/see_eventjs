@@ -121,7 +121,7 @@ const SignIn = props => {
 };
 
 const reduxDispatchSign = dispatch => ({
-  register: dataRegister => dispatch({type: 'LOGIN', data: dataRegister}),
+  register: dataLogin => dispatch({type: 'LOGIN', data: dataLogin}),
 });
 
 const reduxState = state => ({
