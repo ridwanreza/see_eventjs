@@ -25,6 +25,8 @@ function* register(action) {
     }
   } catch (err) {
     console.log(err);
+    yield put({type: 'LOGIN_FAILED'});
+    alert('TRY AGAIN LATER');
   }
 }
 
