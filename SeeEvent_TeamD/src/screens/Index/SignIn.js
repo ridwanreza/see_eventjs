@@ -1,12 +1,36 @@
-import React from 'react';
-import {View, Text, Pressable, StatusBar, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  Pressable,
+  StatusBar,
+  ScrollView,
+  Alert,
+} from 'react-native';
 import Header from '../../components/header/Header';
 import TextInputWIcon from '../../components/TextInputWIcon';
 import ButtonWhite from '../../components/button/Buttonwhite';
 import Button from '../../components/button/Button';
 import TextInputPassword from '../../components/TextInputPassword';
+import {connect} from 'react-redux';
+import {useNavigation} from '@react-navigation/core';
 
 const SignIn = props => {
+  const [email, setEmail] = useState();
+  const [password, setPasssword] = useState();
+  const navigation = useNavigation();
+
+  console.log('INI IS LOADING', props.token);
+
+  const handleNavigasi = () => {
+    const response = props.register({email, password});
+    if (props.token) {
+      navigation.navigate('GoToHomeScreen');
+    } else {
+      Alert.alert('Email or Password incorrect');
+    }
+  };
+
   return (
     <View>
       <Header
@@ -25,15 +49,18 @@ const SignIn = props => {
         Welcome Back!
       </Text>
       <View style={{marginBottom: 10}}>
-        <TextInputWIcon text="Email" />
+        <TextInputWIcon text="Email" ChangeText={text => setEmail(text)} />
       </View>
       <View>
-        <TextInputPassword text="Password" />
+        <TextInputPassword
+          text="Password"
+          ChangeText={text => setPasssword(text)}
+        />
       </View>
       <View style={{marginTop: 20}}>
         <Button
-          text="Sign In"
-          navigation={() => props.navigation.navigate('GoToHomeScreen')}
+          text={props.isLoggedIn == false ? 'Sign In' : ' Loading....'}
+          navigation={() => handleNavigasi()}
         />
       </View>
       <Pressable
@@ -93,4 +120,13 @@ const SignIn = props => {
   );
 };
 
-export default SignIn;
+const reduxDispatchSign = dispatch => ({
+  register: dataRegister => dispatch({type: 'LOGIN', data: dataRegister}),
+});
+
+const reduxState = state => ({
+  isLoading: state.auth.isLoading,
+  token: state.auth.token,
+  isLoggedIn: state.auth.isLoggedIn,
+});
+export default connect(reduxState, reduxDispatchSign)(SignIn);

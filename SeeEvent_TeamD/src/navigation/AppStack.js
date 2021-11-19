@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import Idx from '../screens/Index/Idx';
 import SignIn from '../screens/Index/SignIn';
@@ -15,6 +15,8 @@ import SavedEvents from '../screens/main/Profile/SavedEvents';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CreateMyevent from '../screens/main/MyEvent/CreateMyevent';
 import EventDetail from '../screens/main/MyEvent/EventDetail';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {connect} from 'react-redux';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -22,13 +24,41 @@ import {
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const AppStack = () => {
+const AppStack = props => {
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    setSaveToken(props.token);
+  }, [props.token]);
+
+  const [savetoken, setSaveToken] = useState();
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('TOKEN');
+      if (value !== null) {
+        console.log(value);
+        setSaveToken(value);
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+  console.log('INI DATA DI NAVIGASI', props.token);
   return (
     <Stack.Navigator screenOptions={() => ({headerShown: false})}>
-      <Stack.Screen name="Idx" component={Idx} />
-      <Stack.Screen name="SignIn" component={SignIn} />
+      {savetoken ? (
+        <Stack.Screen name="GoToHomeScreen" component={btmNav} />
+      ) : (
+        <>
+          <Stack.Screen name="Idx" component={Idx} />
+          <Stack.Screen name="SignIn" component={SignIn} />
+        </>
+      )}
       <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="GoToHomeScreen" component={btmNav} />
+
       <Stack.Screen name="EventDetail" component={EventDetail} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="EditPassword" component={EditPassword} />
@@ -38,7 +68,11 @@ const AppStack = () => {
   );
 };
 
-export default AppStack;
+const reduxState = state => ({
+  token: state.auth.token,
+});
+
+export default connect(reduxState, null)(AppStack);
 
 const btmNav = () => {
   return (

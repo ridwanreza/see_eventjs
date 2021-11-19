@@ -16,7 +16,9 @@ export default function EventDetail(props) {
         title_sec="Event Detail"
         navigation={() => props.navigation.navigate('Event')}
       />
-      <ScrollView contentContainerStyle={{flexGrow: 1, height: hp('400%')}}>
+      <ScrollView
+      // contentContainerStyle={{flexGrow: 1, height: hp('400%')}}
+      >
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <View
             style={{

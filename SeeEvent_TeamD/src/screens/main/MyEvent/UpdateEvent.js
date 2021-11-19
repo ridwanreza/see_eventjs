@@ -21,7 +21,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import imagedefault from '../../../assets/uploadimg.png';
-export default function CreateMyevent(props) {
+export default function UpdateEvent(props) {
   const countries = [
     'Photography',
     'Design',

@@ -3,7 +3,9 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 export default function FooterSec(props) {
   return (
-    <View style={{flex: 1, position: 'absolute', left: 0, right: 0, bottom: 0}}>
+    <View
+    // style={{flex: 1, position: 'absolute', left: 0, right: 0, bottom: 0}}
+    >
       <View
         style={{
           height: 88,

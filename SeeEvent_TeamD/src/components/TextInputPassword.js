@@ -38,6 +38,7 @@ export default function TextInputPassword(props) {
         }}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        onChangeText={props.ChangeText}
       />
       <TouchableOpacity>
         <Icon

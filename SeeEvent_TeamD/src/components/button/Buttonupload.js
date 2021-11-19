@@ -22,7 +22,8 @@ export default function Button(props) {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'row',
-        }}>
+        }}
+        onPress={props.handleUpload}>
         <Icon
           name="cloud-upload-outline"
           size={25}

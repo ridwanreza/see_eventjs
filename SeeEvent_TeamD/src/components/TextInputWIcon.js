@@ -30,16 +30,24 @@ export default function TextInputWIcon(props) {
           paddingHorizontal: 10,
           fontSize: 20,
         }}
+        onChangeText={props.ChangeText}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         defaultValue={props.isi}></TextInput>
-      <TouchableOpacity>
+      <TouchableOpacity style={{flexDirection: 'row'}}>
         <Icon
-          // style={{ top: 30, height: 30}}
+          style={{marginHorizontal: 10}}
           size={20}
           color={'grey'}
           name={props.iconright}
           onPress={props.klik}
+        />
+        <Icon
+          // style={{ top: 30, height: 30}}
+          size={20}
+          color={'grey'}
+          name={props.iconright2}
+          onPress={props.klik2}
         />
       </TouchableOpacity>
     </View>
