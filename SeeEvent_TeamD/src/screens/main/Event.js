@@ -7,10 +7,11 @@ import {useNavigation} from '@react-navigation/core';
 import SkeletonEvent from '../../components/Skeleton/SkeletonEvent';
 import Button from '../../components/button/Button';
 import Buttonsign from '../../components/button/Buttonsign';
+import {connect} from 'react-redux';
 const Event = props => {
   const token = 123;
   const navigation = useNavigation();
-  if (token == null) {
+  if (props.token == false) {
     return (
       <View style={{flex: 1}}>
         <HeaderMain title_main="My Events" />
@@ -72,4 +73,9 @@ const Event = props => {
     );
   }
 };
-export default Event;
+
+const reduxState = state => ({
+  token: state.auth.token,
+});
+
+export default connect(reduxState, null)(Event);

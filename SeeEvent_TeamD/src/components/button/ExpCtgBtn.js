@@ -13,7 +13,7 @@ import {
 const ExpCtgBtn = props => {
   return (
     <View>
-      <TouchableOpacity style={styles.ctgExpBtn}>
+      <TouchableOpacity style={styles.ctgExpBtn} onPress={props.handleNavigate}>
         <Text style={{fontSize: 20, textAlign: 'center', color: '#214457'}}>
           {props.textCategory}
         </Text>

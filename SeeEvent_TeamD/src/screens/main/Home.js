@@ -9,22 +9,42 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {useNavigation} from '@react-navigation/core';
+
 const Explore = props => {
+  const navigation = useNavigation();
   console.log(props.dataHome);
   console.log(props.isLoading);
+
   useEffect(() => {
     props.getEventInHOme();
   }, []);
 
+  const gabungan = props.dataHome.concat(
+    props.dataHome2,
+    props.dataHome3,
+    props.dataHome4,
+    props.dataHome5,
+  );
+
+  console.log('INI GABUNGAN DATA ', gabungan);
   const renderCard = ({item}) => {
-    return <CardEvntContent data={item} />;
+    console.log('INI CONSOLE DARI ITEM', item);
+    return (
+      <CardEvntContent
+        data={item}
+        handleNavigate={() =>
+          navigation.navigate('EventDetail', {gabungan: item})
+        }
+      />
+    );
   };
   return (
     <View>
       <HeaderMainTab title_main="SeeEvent" />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{height: hp('144%')}}>
+        contentContainerStyle={{height: hp('150%')}}>
         <View
           style={{
             justifyContent: 'space-between',
@@ -52,7 +72,7 @@ const Explore = props => {
             <FlatList
               showsHorizontalScrollIndicator={false}
               horizontal={true}
-              data={props.dataHome}
+              data={gabungan}
               renderItem={renderCard}
               keyExtractor={(item, index) => index}
             />
@@ -74,15 +94,16 @@ const Explore = props => {
           <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>
             Explore By Category
           </Text>
-          <TouchableOpacity>
-            <Text style={{color: '#3E89AE', textDecorationLine: 'underline'}}>
-              See All
-            </Text>
-          </TouchableOpacity>
         </View>
-        <View style={{marginVertical: 10}}>
+
+        <View style={{marginVertical: 3}}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <ExpCtgBtn textCategory="Photography" />
+            <ExpCtgBtn
+              textCategory="Photography"
+              handleNavigate={() =>
+                navigation.navigate('EventDetail', {gabungan: item.id})
+              }
+            />
             <ExpCtgBtn textCategory="Design" />
             <ExpCtgBtn textCategory="Technology" />
             <ExpCtgBtn textCategory="Photography" />
@@ -92,12 +113,34 @@ const Explore = props => {
             <ExpCtgBtn textCategory="Photography" />
           </ScrollView>
         </View>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            marginTop: 20,
+            paddingHorizontal: 20,
+            marginVertical: 5,
+          }}>
+          <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>
+            Music Events
+          </Text>
+          <TouchableOpacity>
+            <Text
+              style={{
+                color: '#3E89AE',
+                textDecorationLine: 'underline',
+                fontSize: 14,
+              }}>
+              See All
+            </Text>
+          </TouchableOpacity>
+        </View>
         {props.isLoading == false ? (
           <View style={{height: hp('57%')}}>
             <FlatList
               showsHorizontalScrollIndicator={false}
               horizontal={true}
-              data={props.dataHome}
+              data={props.dataHome6}
               renderItem={renderCard}
               keyExtractor={(item, index) => index}
             />
@@ -121,6 +164,11 @@ const reduxDispatch = dispatch => ({
 const reduxState = state => ({
   dataHome: state.home.dataHome,
   isLoading: state.home.isLoading,
+  dataHome2: state.home.dataHome2,
+  dataHome3: state.home.dataHome3,
+  dataHome4: state.home.dataHome4,
+  dataHome5: state.home.dataHome5,
+  dataHome6: state.home.dataHome6,
 });
 
 export default connect(reduxState, reduxDispatch)(Explore);

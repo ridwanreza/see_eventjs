@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -24,11 +24,11 @@ const SignIn = props => {
 
   const handleNavigasi = () => {
     const response = props.register({email, password});
-    // if (props.token) {
-    //   navigation.navigate('GoToHomeScreen');
-    // } else {
-    //   Alert.alert('Email or Password incorrect');
-    // }
+    if (props.token) {
+      navigation.navigate('GoToHomeScreen');
+    } else {
+      navigation.navigate('SignIn');
+    }
   };
 
   return (

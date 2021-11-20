@@ -15,7 +15,6 @@ const Idx = props => {
         style={{
           justifyContent: 'center',
           alignItems: 'center',
-
           height: hp('100%'),
         }}>
         <View
@@ -60,7 +59,7 @@ const Idx = props => {
           />
           <Pressable
             style={{alignSelf: 'center'}}
-            onPress={() => props.navigation.navigate('GoToHomeScreen')}>
+            onPress={() => props.navigation.navigate('GoToHomeScreen2')}>
             <Text
               style={{
                 textDecorationLine: 'underline',

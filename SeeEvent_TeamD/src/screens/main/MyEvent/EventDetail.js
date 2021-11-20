@@ -10,6 +10,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 export default function EventDetail(props) {
+  console.log(props.route.params.gabungan);
   return (
     <View style={{flex: 1}}>
       <Header

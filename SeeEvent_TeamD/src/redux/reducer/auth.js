@@ -13,6 +13,11 @@ const auth = (state = initialState, action) => {
         isLoggedIn: true,
         token: '',
       };
+    case 'SAVE_TOKEN':
+      return {
+        ...state,
+        token: action.savetoken,
+      };
     case 'LOGIN_SUCCESS':
       return {
         ...state,
