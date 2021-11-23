@@ -24,7 +24,8 @@ export default function FooterSec(props) {
             borderRadius: 10,
             justifyContent: 'center',
             alignItems: 'center',
-          }}>
+          }}
+          onPress={props.handleNavigation}>
           <Text style={{color: 'white', fontSize: 16}}>{props.text}</Text>
         </TouchableOpacity>
       </View>

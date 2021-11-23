@@ -12,7 +12,14 @@ import {
 } from 'react-native-responsive-screen';
 import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Profile = props => {
+  useEffect(() => {
+    props.getProfil();
+  }, []);
+  console.log('INI PROPS DARI DATAHOME 11 TOPKEN', props.token);
+  console.log('INI PROPS DARI DATAHOME 11 DATANYA', props.dataHome11);
+  console.log('INI DATA SDAERI REDUCER', props.dataisi);
   const navigation = useNavigation();
   console.log('NILAI TOKEN', props.token);
   if (props.token == false) {
@@ -52,10 +59,58 @@ const Profile = props => {
       <View style={{flex: 1, height: hp('100%')}}>
         <HeaderMain title_main="Profile" />
 
-        <CardPropImg
-          text1="Pratur Anahata Pratama"
-          text2="praturanhata45@gmail.com"
-        />
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginVertical: 8,
+          }}>
+          <View
+            style={{
+              width: wp('85%'),
+              height: hp('30'),
+              backgroundColor: 'white',
+              justifyContent: 'center',
+              alignItems: 'center',
+              elevation: 7,
+              borderRadius: 10,
+              marginTop: 20,
+            }}>
+            <View>
+              <View
+                style={{
+                  height: 100,
+                  width: 100,
+                  borderRadius: 130,
+                  overflow: 'hidden',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Image
+                  style={{height: 100, width: 160, resizeMode: 'contain'}}
+                  source={{uri: `${props.dataHome11.data?.image}`}}></Image>
+              </View>
+            </View>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                fontSize: 20,
+                color: 'black',
+                marginTop: 15,
+              }}>
+              {props.dataHome11.data?.firstName}
+              {props.dataHome11.data?.lastName}
+            </Text>
+            <Text
+              style={{
+                fontSize: 16,
+                marginVertical: 5,
+                color: 'black',
+              }}>
+              {props.dataHome11.data?.email}
+            </Text>
+          </View>
+        </View>
         <CardProfile
           text1="Edit Profile"
           iconleft="person-outline"
@@ -78,7 +133,10 @@ const Profile = props => {
           text1="Log out"
           iconleft="log-out-sharp"
           iconright="chevron-forward-outline"
-          navigation={() => props.navigation.navigate('Idx')}
+          navigation={async () => {
+            props.delTOken();
+            props.navigation.navigate('Idx1');
+          }}
         />
         <Text
           style={{
@@ -93,8 +151,16 @@ const Profile = props => {
     );
   }
 };
-const reduxState = state => ({
-  token: state.auth.token,
+
+const reduxDispatch = dispatch => ({
+  getProfil: () => dispatch({type: 'GETPROFIL_ID'}),
+  delTOken: () => dispatch({type: 'REMOVE_TOKEN'}),
 });
 
-export default connect(reduxState, null)(Profile);
+const reduxState = state => ({
+  token: state.auth.token,
+  dataHome11: state.home.dataHome11,
+  dataisi: state.home,
+});
+
+export default connect(reduxState, reduxDispatch)(Profile);

@@ -10,14 +10,16 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {useNavigation} from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Explore = props => {
+const Home = props => {
   const navigation = useNavigation();
   console.log(props.dataHome);
   console.log(props.isLoading);
 
   useEffect(() => {
     props.getEventInHOme();
+    AsyncStorage.getItem('PASSWORD').then(e => console.log(e));
   }, []);
 
   const gabungan = props.dataHome.concat(
@@ -27,14 +29,14 @@ const Explore = props => {
     props.dataHome5,
   );
 
-  console.log('INI GABUNGAN DATA ', gabungan);
+  console.log('INI DATA TOdayyyyyy DATA ', props.dataHome6);
   const renderCard = ({item}) => {
-    console.log('INI CONSOLE DARI ITEM', item);
+    console.log('INI CONSOLE DARI ITEM', item.id);
     return (
       <CardEvntContent
         data={item}
         handleNavigate={() =>
-          navigation.navigate('EventDetail', {gabungan: item})
+          navigation.navigate('EventDetail', {gabungan: item.id})
         }
       />
     );
@@ -56,7 +58,7 @@ const Explore = props => {
           <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>
             Starting Soon
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Seeall')}>
             <Text
               style={{
                 color: '#3E89AE',
@@ -95,22 +97,50 @@ const Explore = props => {
             Explore By Category
           </Text>
         </View>
-
         <View style={{marginVertical: 3}}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <ExpCtgBtn
               textCategory="Photography"
               handleNavigate={() =>
-                navigation.navigate('EventDetail', {gabungan: item.id})
+                navigation.navigate('Explore', {passingan: 1})
               }
             />
-            <ExpCtgBtn textCategory="Design" />
-            <ExpCtgBtn textCategory="Technology" />
-            <ExpCtgBtn textCategory="Photography" />
-            <ExpCtgBtn textCategory="Photography" />
-            <ExpCtgBtn textCategory="Design" />
-            <ExpCtgBtn textCategory="Technology" />
-            <ExpCtgBtn textCategory="Photography" />
+            <ExpCtgBtn
+              textCategory="Design"
+              handleNavigate={() =>
+                navigation.navigate('Explore', {passingan: 2})
+              }
+            />
+            <ExpCtgBtn
+              textCategory="Development"
+              handleNavigate={() =>
+                navigation.navigate('Explore', {passingan: 3})
+              }
+            />
+            <ExpCtgBtn
+              textCategory="Marketing"
+              handleNavigate={() =>
+                navigation.navigate('Explore', {passingan: 4})
+              }
+            />
+            <ExpCtgBtn
+              textCategory="Bussiness"
+              handleNavigate={() =>
+                navigation.navigate('Explore', {passingan: 5})
+              }
+            />
+            <ExpCtgBtn
+              textCategory="Lifestyle"
+              handleNavigate={() =>
+                navigation.navigate('Explore', {passingan: 6})
+              }
+            />
+            <ExpCtgBtn
+              textCategory="Music"
+              handleNavigate={() =>
+                navigation.navigate('Explore', {passingan: 7})
+              }
+            />
           </ScrollView>
         </View>
         <View
@@ -124,7 +154,7 @@ const Explore = props => {
           <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black'}}>
             Music Events
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Seeall')}>
             <Text
               style={{
                 color: '#3E89AE',
@@ -171,4 +201,4 @@ const reduxState = state => ({
   dataHome6: state.home.dataHome6,
 });
 
-export default connect(reduxState, reduxDispatch)(Explore);
+export default connect(reduxState, reduxDispatch)(Home);

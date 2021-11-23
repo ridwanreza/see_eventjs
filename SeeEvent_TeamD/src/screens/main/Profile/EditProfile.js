@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image} from 'react-native';
 import Header from '../../../components/header/Header';
 import FooterSec from '../../../components/Footer/FooterSec';
@@ -7,9 +7,18 @@ import CardTextProp from '../../../components/CardTextProp';
 import {launchImageLibrary} from 'react-native-image-picker';
 import imagedefault from '../../../assets/person.png';
 import TextInputWIcon from '../../../components/TextInputWIcon';
-export default function EditProfile(props) {
+import {connect} from 'react-redux';
+const EditProfile = props => {
   const [image, setImage] = useState();
   const [rawImage, setRawImage] = useState();
+  const [lastname, setLastName] = useState();
+  const [firstname, setFirstName] = useState();
+  const [email, setEmail] = useState();
+
+  console.log('DATA DI EDI PASSSSS>>>>>>>>>>>>', props.dataHome11);
+  useEffect(() => {
+    props.getEditProfil();
+  }, []);
   // For Image picker
 
   const options = {
@@ -66,10 +75,36 @@ export default function EditProfile(props) {
         text="Upload new picture"
         handleUpload={() => pickImage()}
       />
-      <TextInputWIcon text="Pratur Anahata"></TextInputWIcon>
-      <TextInputWIcon text="Pratama"></TextInputWIcon>
-      <TextInputWIcon text="praturanhata45@gmail.com"></TextInputWIcon>
-      <FooterSec text="Saved Profile" />
+      <TextInputWIcon
+        text={props.dataHome11.data?.firstName}
+        ChangeText={text => setFirstName(text)}></TextInputWIcon>
+      <TextInputWIcon
+        text={props.dataHome11.data?.lastName}
+        ChangeText={text => setLastName(text)}></TextInputWIcon>
+      <TextInputWIcon
+        text={props.dataHome11.data?.email}
+        ChangeText={text => setEmail(text)}></TextInputWIcon>
+      <FooterSec
+        text="Saved Profile"
+        handleNavigation={() =>
+          props.editProfil({lastname, firstname, email, rawImage})
+        }
+      />
     </View>
   );
-}
+};
+
+const reduxDispatch = dispatch => ({
+  getEditProfil: () => dispatch({type: 'GETPROFIL_ID'}),
+
+  editProfil: passingDataFLE =>
+    dispatch({type: 'EDITPROFIL_START', value: passingDataFLE}),
+});
+
+const reduxState = state => ({
+  token: state.auth.token,
+  dataHome11: state.home.dataHome11,
+  dataisi: state.home,
+});
+
+export default connect(reduxState, reduxDispatch)(EditProfile);

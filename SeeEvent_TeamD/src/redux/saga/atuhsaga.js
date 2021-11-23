@@ -11,6 +11,15 @@ const storeToken = async value => {
   }
 };
 
+const storePassword = async value => {
+  try {
+    await AsyncStorage.setItem('PASSWORD', value);
+    console.log('STORAGE SUCCES');
+  } catch (e) {
+    console.log('STORAGE FAIILED');
+  }
+};
+
 function* login(action) {
   try {
     console.log('LOGIN START');
@@ -21,7 +30,9 @@ function* login(action) {
     });
     if (resLogin && resLogin.data) {
       yield storeToken(resLogin.data.token);
+      // yield storeToken(resLogin.data);
       yield put({type: 'LOGIN_SUCCESS', token: resLogin.data.token});
+      yield storePassword(action.data.password);
     }
   } catch (err) {
     console.log(err);
@@ -30,8 +41,19 @@ function* login(action) {
   }
 }
 
+function* removetokenn(action) {
+  try {
+    resLogin = yield AsyncStorage.removeItem('TOKEN');
+    yield put({type: 'REMOVE_TOKEN_SUCCESS', token: ''});
+  } catch (err) {
+    console.log(err);
+    yield put({type: 'REMOVE_TOKEN_FAILED'});
+  }
+}
+
 function* rootSaga() {
   yield takeLatest('LOGIN', login);
+  yield takeLatest('REMOVE_TOKEN', removetokenn);
 }
 
 export default rootSaga;

@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, Image} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, Image, FlatList} from 'react-native';
 import HeaderMain from '../../components/header/HeaderMain';
 import CardEvent from '../../components/CardEvent';
 import Floatingicon from '../../components/Floatingicon';
@@ -8,9 +8,26 @@ import SkeletonEvent from '../../components/Skeleton/SkeletonEvent';
 import Button from '../../components/button/Button';
 import Buttonsign from '../../components/button/Buttonsign';
 import {connect} from 'react-redux';
+import CardEventMyEvent from '../../components/CardEventMyEvent';
 const Event = props => {
   const token = 123;
   const navigation = useNavigation();
+  console.log('INI PROPS DARI DATAHOME 10 TOPKEN', props.token);
+  console.log('INI PROPS DARI DATAHOME 10 DATANYA', props.dataHome10);
+  console.log('INI DATA AUTH', props.datauth);
+  useEffect(() => {
+    props.passingToken(props.token);
+  }, []);
+  const renderCard = ({item}) => {
+    return (
+      <CardEventMyEvent
+        data={item}
+        // handleNavigate={() =>
+        //   navigation.navigate('EventDetail', {gabungan: item.id})
+        // }
+      />
+    );
+  };
   if (props.token == false) {
     return (
       <View style={{flex: 1}}>
@@ -35,7 +52,6 @@ const Event = props => {
             text="Sign Up"
             navigation={() => props.navigation.navigate('SignUp')}
           />
-
           <Buttonsign
             text="Sign In"
             navigation={() => props.navigation.navigate('SignIn')}
@@ -47,25 +63,14 @@ const Event = props => {
     return (
       <View style={{flex: 1}}>
         <HeaderMain title_main="My Events" />
-        <CardEvent
-          date="SUN, OCT 24 @ 1:15 AM ICT"
-          text1="Hitting Reset: How to Land A Job in UX Design"
-          text2="By Adit nento"
-          text3="Design"
-          handleNavigation={() =>
-            navigation.navigate(
-              'EventDetail',
-              // {movie: item.id}
-            )
-          }
-        />
-        <CardEvent
-          date="SUN, OCT 24 @ 1:15 AM ICT"
-          text1="Hitting Reset: How to Land A Job in UX Design"
-          text2="By Adit nento"
-          text3="Design"
-        />
-
+        <View>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={props.dataHome10}
+            renderItem={renderCard}
+            keyExtractor={(item, index) => index}
+          />
+        </View>
         <SkeletonEvent />
 
         <Floatingicon />
@@ -74,8 +79,15 @@ const Event = props => {
   }
 };
 
-const reduxState = state => ({
-  token: state.auth.token,
+const reduxDispatch = dispatch => ({
+  passingToken: passingToken =>
+    dispatch({type: 'GETMYEVENT_ID', value: passingToken}),
 });
 
-export default connect(reduxState, null)(Event);
+const reduxState = state => ({
+  token: state.auth.token,
+  dataHome10: state.home.dataHome10,
+  datauth: state.home,
+});
+
+export default connect(reduxState, reduxDispatch)(Event);

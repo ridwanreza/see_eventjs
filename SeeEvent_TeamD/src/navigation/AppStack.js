@@ -21,6 +21,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import SeeAllEvents from '../screens/main/MyEvent/SeeAllEvents';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -58,13 +59,16 @@ const AppStack = props => {
           <Stack.Screen name="SignIn" component={SignIn} />
         </>
       )}
+
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Idx1" component={Idx} />
       <Stack.Screen name="GoToHomeScreen2" component={btmNav} />
       <Stack.Screen name="EventDetail" component={EventDetail} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="EditPassword" component={EditPassword} />
       <Stack.Screen name="SavedEvent" component={SavedEvents} />
       <Stack.Screen name="CreateEvent" component={CreateMyevent} />
+      <Stack.Screen name="Seeall" component={SeeAllEvents} />
     </Stack.Navigator>
   );
 };

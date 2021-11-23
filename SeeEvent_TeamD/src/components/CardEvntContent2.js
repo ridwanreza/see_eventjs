@@ -8,7 +8,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {connect} from 'react-redux';
-const CardEvntContent = props => {
+const CardEvntContent2 = props => {
   let kosong = '';
   // console.log('INI DATA CARD >>>>', props.data);
   return (
@@ -58,7 +58,7 @@ const reduxState = state => ({
   token: state.auth.token,
 });
 
-export default connect(reduxState, null)(CardEvntContent);
+export default connect(reduxState, null)(CardEvntContent2);
 
 const styles = StyleSheet.create({
   container: {
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     borderRadius: 10,
     marginHorizontal: 10,
+    marginVertical: 10,
   },
   imgContainer: {
     width: wp('60%'),
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   img: {
     flex: 1,
     height: hp('28%'),
-    width: wp('60%'),
+    width: wp('45%'),
     resizeMode: 'cover',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,

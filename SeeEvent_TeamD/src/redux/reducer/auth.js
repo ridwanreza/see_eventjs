@@ -28,7 +28,22 @@ const auth = (state = initialState, action) => {
     case 'LOGIN_FAILED':
       return {
         ...state,
+        isLoading: true,
+        isLoggedIn: true,
+      };
+    case 'REMOVE_TOKEN':
+      return {
+        ...state,
+        token: action.token,
         isLoading: false,
+        isLoggedIn: false,
+        token: '',
+      };
+    case 'REMOVE_TOKEN_SUCCESS':
+      return {
+        ...state,
+        isLoading: true,
+        token: '',
       };
     default:
       return state;

@@ -6,12 +6,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-export default function CardEvent(props) {
+export default function CardEventMyEvent(props) {
   return (
-    <View
-      style={{
-        marginTop: 20,
-      }}>
+    <View style={{marginTop: 20}}>
       <View
         style={{
           flexDirection: 'row',
@@ -61,6 +58,7 @@ export default function CardEvent(props) {
         <View
           style={{
             flex: 1,
+
             alignItems: 'flex-end',
           }}>
           <Image
@@ -69,6 +67,7 @@ export default function CardEvent(props) {
               borderRadius: 5,
               width: wp('35%'),
               height: hp('11%'),
+              resizeMode='cover'
             }}></Image>
           <View
             style={{
@@ -85,11 +84,7 @@ export default function CardEvent(props) {
               />
             </TouchableOpacity>
             <TouchableOpacity>
-              {props.token ? (
-                <Icon name="bookmark-outline" size={25} color={'#214457'} />
-              ) : (
-                <Text></Text>
-              )}
+              <Icon name="bookmark-outline" size={25} color={'#214457'} />
             </TouchableOpacity>
           </View>
         </View>

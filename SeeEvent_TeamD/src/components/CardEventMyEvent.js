@@ -6,12 +6,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-export default function CardEvent(props) {
+export default function CardEventMyEvent(props) {
   return (
-    <View
-      style={{
-        marginTop: 20,
-      }}>
+    <View style={{marginTop: 20}}>
       <View
         style={{
           flexDirection: 'row',
@@ -30,7 +27,7 @@ export default function CardEvent(props) {
                 fontSize: 12,
                 color: '#373737',
               }}>
-              {props.data.eventDate}
+              {props.data.event?.dateEvent}
             </Text>
             <View style={{flexWrap: 'wrap', width: 174}}>
               <Text
@@ -39,7 +36,7 @@ export default function CardEvent(props) {
                   fontWeight: 'bold',
                   color: '#214457',
                 }}>
-                {props.data.title}
+                {props.data.event.title}
               </Text>
             </View>
             <Text>{props.data.user.firstName}</Text>
@@ -61,10 +58,11 @@ export default function CardEvent(props) {
         <View
           style={{
             flex: 1,
+
             alignItems: 'flex-end',
           }}>
           <Image
-            source={{uri: `${props.data.photoEvent}`}}
+            source={{uri: `${props.data.event.photoEvent}`}}
             style={{
               borderRadius: 5,
               width: wp('35%'),
@@ -85,11 +83,7 @@ export default function CardEvent(props) {
               />
             </TouchableOpacity>
             <TouchableOpacity>
-              {props.token ? (
-                <Icon name="bookmark-outline" size={25} color={'#214457'} />
-              ) : (
-                <Text></Text>
-              )}
+              <Icon name="bookmark-outline" size={25} color={'#214457'} />
             </TouchableOpacity>
           </View>
         </View>
