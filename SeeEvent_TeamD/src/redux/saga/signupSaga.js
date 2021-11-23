@@ -1,15 +1,7 @@
 import {takeLatest, put} from '@redux-saga/core/effects';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const storeToken = async value => {
-  try {
-    await AsyncStorage.setItem('TOKEN', value);
-    console.log('STORAGE SUCCES');
-  } catch (e) {
-    console.log('STORAGE FAIILED');
-  }
-};
+import {Alert} from 'react-native';
 
 function* signup(action) {
   console.log('DARI ACTION SAGA SSIGN UP', action.data);
@@ -33,11 +25,10 @@ function* signup(action) {
       {headers},
     );
 
-    console.log('INI DATA DARI BE SIGN UP', resRegister);
-    if (resRegister && resRegister.data)
-      yield storeToken(resRegister.data.token);
-    console.log('Data dari BEEEEE', resRegister.data.token);
-    yield put({type: 'SIGNUP_SUCCESS', token: resRegister.data.token});
+    console.log('INI DATA DARI BE SIGN UP', resRegister.data);
+    if (resRegister && resRegister.data) console.log('Data dari BEEEEE');
+    yield put({type: 'SIGNUP_SUCCESS'});
+    Alert.alert('REGISTER SUCCESS, GO TO LOGIN SCREEN ');
   } catch (error) {
     console.log(error);
     yield put({type: 'SIGNUP_FAILED'});

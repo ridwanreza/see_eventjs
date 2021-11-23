@@ -5,8 +5,11 @@ const initialState = {
 };
 
 const signup = (state = initialState, action) => {
+  
   switch (action.type) {
+    
     case 'SIGNUP':
+      console.log('TOKEN DATA')
       return {
         ...state,
         isLoadingSignup: true,

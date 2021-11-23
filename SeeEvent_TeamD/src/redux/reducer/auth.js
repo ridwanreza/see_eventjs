@@ -1,3 +1,4 @@
+
 const initialState = {
   isLoading: false,
   isLoggedIn: false,
@@ -5,6 +6,7 @@ const initialState = {
 };
 
 const auth = (state = initialState, action) => {
+  console.log('AUTH TOKEN :', state.token);
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -12,6 +14,11 @@ const auth = (state = initialState, action) => {
         isLoading: true,
         isLoggedIn: true,
         token: '',
+      };
+    case 'SAVE_TOKEN':
+      return {
+        ...state,
+        token: action.savetoken,
       };
     case 'LOGIN_SUCCESS':
       return {

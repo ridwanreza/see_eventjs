@@ -8,14 +8,18 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const CardEvntContent = props => {
-  console.log('INI DATA CARD >>>>', props.data);
+  // console.log('INI DATA CARD >>>>', props.data);
   return (
     <View style={styles.container}>
       {/* IMAGE CONTAINER */}
-      <View style={styles.imgContainer}>
-        <Image style={styles.img} source={{uri: `${props.data.photoEvent}`}} />
-      </View>
-
+      <TouchableOpacity onPress={props.handleNavigate}>
+        <View style={styles.imgContainer}>
+          <Image
+            style={styles.img}
+            source={{uri: `${props.data.photoEvent}`}}
+          />
+        </View>
+      </TouchableOpacity>
       {/* CONTENT TEXT CONTAINER */}
       <View style={styles.txtContainer}>
         <View style={styles.compContainer}>

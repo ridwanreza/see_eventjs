@@ -39,14 +39,15 @@ const AppStack = props => {
     try {
       const value = await AsyncStorage.getItem('TOKEN');
       if (value !== null) {
-        console.log(value);
+        // console.log(value);
         setSaveToken(value);
+        props.isSavetoken(value);
       }
     } catch (e) {
       // error reading value
     }
   };
-  console.log('INI DATA DI NAVIGASI', props.token);
+  // console.log('INI DATA DI NAVIGASI', props.token);
   return (
     <Stack.Navigator screenOptions={() => ({headerShown: false})}>
       {savetoken ? (
@@ -58,7 +59,7 @@ const AppStack = props => {
         </>
       )}
       <Stack.Screen name="SignUp" component={SignUp} />
-
+      <Stack.Screen name="GoToHomeScreen2" component={btmNav} />
       <Stack.Screen name="EventDetail" component={EventDetail} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="EditPassword" component={EditPassword} />
@@ -68,11 +69,17 @@ const AppStack = props => {
   );
 };
 
+const reduxDispatch = dispatch => {
+  return {
+    isSavetoken: issavetoken =>
+      dispatch({type: 'SAVE_TOKEN', savetoken: issavetoken}),
+  };
+};
 const reduxState = state => ({
   token: state.auth.token,
 });
 
-export default connect(reduxState, null)(AppStack);
+export default connect(reduxState, reduxDispatch)(AppStack);
 
 const btmNav = () => {
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Pressable, Image} from 'react-native';
 import HeaderMain from '../../components/header/HeaderMain';
 import CardPropImg from '../../components/CardPropImg';
@@ -10,10 +10,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-const Explore = props => {
-  const token = 123;
+import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const Profile = props => {
+  
   const navigation = useNavigation();
-  if (token == null) {
+  console.log('NILAI TOKEN', props.token);
+
+  if (props.token == false) {
     return (
       <View style={{flex: 1}}>
         <HeaderMain title_main="My Events" />
@@ -78,6 +82,7 @@ const Explore = props => {
           iconright="chevron-forward-outline"
           navigation={() => props.navigation.navigate('Idx')}
         />
+        
         <Text
           style={{
             color: 'grey',
@@ -85,10 +90,18 @@ const Explore = props => {
             marginVertical: 5,
             fontSize: 12,
           }}>
-          Version v1.1.2
+          Version v1.1.2 
         </Text>
       </View>
     );
   }
 };
-export default Explore;
+const reduxState = state => ({
+  token: state.auth.token
+});
+
+// const profDispatch = dispatch => ({
+//   login: () => dispatch({type: 'GET_PROFILE_DATA'}),
+// })
+
+export default connect(reduxState, null)(Profile);

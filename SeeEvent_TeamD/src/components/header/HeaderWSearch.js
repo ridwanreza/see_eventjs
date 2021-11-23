@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   StatusBar,
@@ -38,7 +39,7 @@ const HeaderWSearch = props => {
             </View>
             <TextInput
               placeholder="Search events"
-              style={styles.txtInpt}></TextInput>
+              style={styles.txtInpt} ></TextInput>
           </View>
           <ScrollView
             style={styles.dropDContainer}
