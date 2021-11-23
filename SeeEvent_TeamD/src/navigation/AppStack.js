@@ -57,10 +57,10 @@ const AppStack = props => {
         <>
           <Stack.Screen name="Idx" component={Idx} />
           <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="SignUp" component={SignUp} />
         </>
       )}
 
-      <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Idx1" component={Idx} />
       <Stack.Screen name="GoToHomeScreen2" component={btmNav} />
       <Stack.Screen name="EventDetail" component={EventDetail} />
