@@ -12,7 +12,7 @@ const initialState = {
   dataHome11: [],
   dataHome12: [],
   dataHome13: [],
-  loading: false,
+  loadings: false,
 };
 
 const home = (state = initialState, action) => {
