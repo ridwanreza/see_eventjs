@@ -30,10 +30,6 @@ const AppStack = props => {
     getData();
   }, []);
 
-  useEffect(() => {
-    setSaveToken(props.token);
-  }, [props.token]);
-
   const [savetoken, setSaveToken] = useState();
 
   const getData = async () => {
@@ -42,7 +38,7 @@ const AppStack = props => {
       if (value !== null) {
         console.log(value);
         setSaveToken(value);
-        props.isSavetoken(value);
+        props.save(value);
       }
     } catch (e) {
       // error reading value
@@ -60,6 +56,8 @@ const AppStack = props => {
           <Stack.Screen name="SignUp" component={SignUp} />
         </>
       )}
+      <Stack.Screen name="SignIn2" component={SignIn} />
+      <Stack.Screen name="SignUp2" component={SignUp} />
 
       <Stack.Screen name="Idx1" component={Idx} />
       <Stack.Screen name="GoToHomeScreen2" component={btmNav} />
@@ -73,12 +71,9 @@ const AppStack = props => {
   );
 };
 
-const reduxDispatch = dispatch => {
-  return {
-    isSavetoken: issavetoken =>
-      dispatch({type: 'SAVE_TOKEN', savetoken: issavetoken}),
-  };
-};
+const reduxDispatch = dispacth => ({
+  save: item => dispacth({type: 'SAVE_TOKEN', savetoken: item}),
+});
 const reduxState = state => ({
   token: state.auth.token,
 });
@@ -90,6 +85,7 @@ const btmNav = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         headerShown: false,
+        tabBarActiveTintColor: '#214457',
         tabBarStyle: {
           backgroundColor: 'white',
           paddingBottom: 5,

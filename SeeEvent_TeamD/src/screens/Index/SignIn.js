@@ -22,20 +22,11 @@ const SignIn = props => {
 
   console.log('INI IS LOADING', props.token);
 
-  const handleNavigasi = () => {
-    const response = props.register({email, password});
-    if (props.token) {
-      navigation.navigate('GoToHomeScreen');
-    } else {
-      navigation.navigate('SignIn');
-    }
-  };
-
   return (
     <View>
       <Header
         title_sec="Sign In"
-        navigation={() => props.navigation.navigate('Idx')}
+        navigation={() => props.navigation.navigate('Idx1')}
       />
       <Text
         style={{
@@ -59,8 +50,10 @@ const SignIn = props => {
       </View>
       <View style={{marginTop: 20}}>
         <Button
+          bg={props.isLoading ? 'grey' : '#214457'}
+          disabled={props.isLoading ? true : false}
           text={props.isLoading == false ? 'Sign In' : ' Loading....'}
-          navigation={() => handleNavigasi()}
+          navigation={() => props.register({email, password}, props.navigation)}
         />
       </View>
       <Pressable
@@ -121,7 +114,8 @@ const SignIn = props => {
 };
 
 const reduxDispatchSign = dispatch => ({
-  register: dataLogin => dispatch({type: 'LOGIN', data: dataLogin}),
+  register: (dataLogin, nav) =>
+    dispatch({type: 'LOGIN', data: dataLogin, navigasi: nav}),
 });
 
 const reduxState = state => ({

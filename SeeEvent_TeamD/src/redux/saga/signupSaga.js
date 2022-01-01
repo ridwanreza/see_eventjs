@@ -1,12 +1,21 @@
 import {takeLatest, put} from '@redux-saga/core/effects';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert} from 'react-native';
+import {ToastAndroid} from 'react-native';
+
+const showToast = () => {
+  ToastAndroid.show(
+    'Register Success, Please login first ',
+    ToastAndroid.SHORT,
+  );
+};
+
+const showToastFailed = e => {
+  ToastAndroid.show(e, ToastAndroid.SHORT);
+};
 
 function* signup(action) {
-  console.log('DARI ACTION SAGA SSIGN UP', action.data);
+  console.log('ini passingan ke saga', action.data, action.navigasi);
   try {
-    console.log('TRY');
     const formData = new FormData();
     formData.append('firstName', action.data.firstname);
     formData.append('lastName', action.data.lastname);
@@ -25,15 +34,12 @@ function* signup(action) {
       {headers},
     );
 
-    console.log('INI DATA DARI BE SIGN UP', resRegister.data);
-    if (resRegister && resRegister.data) console.log('Data dari BEEEEE');
     yield put({type: 'SIGNUP_SUCCESS'});
-    Alert.alert('REGISTER SUCCESS, GO TO LOGIN SCREEN ');
+    showToast();
+    action.navigasi.navigate('SignIn');
   } catch (error) {
-    console.log(error);
-    yield put({type: 'SIGNUP_FAILED'});
-
-    alert('TRY AGAIN LATER');
+    yield put({type: 'SIGNUP_FAILED', error: error.response.data.message});
+    showToastFailed(error.response.data.message);
   }
 }
 

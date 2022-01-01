@@ -12,7 +12,9 @@ const initialState = {
   dataHome11: [],
   dataHome12: [],
   dataHome13: [],
-  loadings: false,
+  loading: false,
+  isLoading: false,
+  isLoadingHome: false,
 };
 
 const home = (state = initialState, action) => {
@@ -20,12 +22,12 @@ const home = (state = initialState, action) => {
     case 'GETEVENT START':
       return {
         ...state,
-        isLoading: true,
+        isLoadingHome: true,
       };
     case 'GETEVENT_START_SUCCES':
       return {
         ...state,
-        isLoading: false,
+        isLoadingHome: false,
         dataHome: action.data,
         dataHome2: action.data2,
         dataHome3: action.data3,
@@ -33,6 +35,11 @@ const home = (state = initialState, action) => {
         dataHome5: action.data5,
         dataHome6: action.data6,
         dataHome7: action.data7,
+      };
+
+    case 'GETEVENT_FAILED':
+      return {
+        isLoadingHome: false,
       };
     case 'GETEVENT_ID':
       return {
@@ -79,7 +86,6 @@ const home = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true,
-        dataHome11: [],
       };
     case 'GETPROFIL_SUCCESS':
       return {

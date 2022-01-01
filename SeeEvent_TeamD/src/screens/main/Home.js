@@ -14,8 +14,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = props => {
   const navigation = useNavigation();
-  console.log(props.dataHome);
-  console.log(props.isLoading);
+  console.log(props.dataHomesss);
+  console.log('INI ISI LOADING HOME', props.isLoading);
 
   useEffect(() => {
     props.getEventInHOme();
@@ -31,7 +31,7 @@ const Home = props => {
 
   console.log('INI DATA TOdayyyyyy DATA ', props.dataHome6);
   const renderCard = ({item}) => {
-    console.log('INI CONSOLE DARI ITEM', item.id);
+    // console.log('INI CONSOLE DARI ITEM', item.id);
     return (
       <CardEvntContent
         data={item}
@@ -44,6 +44,7 @@ const Home = props => {
   return (
     <View>
       <HeaderMainTab title_main="SeeEvent" />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{height: hp('150%')}}>
@@ -193,7 +194,7 @@ const reduxDispatch = dispatch => ({
 
 const reduxState = state => ({
   dataHome: state.home.dataHome,
-  isLoading: state.home.isLoading,
+  isLoading: state.home.isLoadingHome,
   dataHome2: state.home.dataHome2,
   dataHome3: state.home.dataHome3,
   dataHome4: state.home.dataHome4,

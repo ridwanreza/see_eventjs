@@ -1,7 +1,7 @@
 const initialState = {
   isLoadingSignup: false,
-  token: '',
   dataSignup: '',
+  error: '',
 };
 
 const signup = (state = initialState, action) => {
@@ -10,18 +10,17 @@ const signup = (state = initialState, action) => {
       return {
         ...state,
         isLoadingSignup: true,
-        token: '',
       };
     case 'SIGNUP_SUCCES':
       return {
         ...state,
-        token: action.token,
         isLoadingSignup: false,
       };
     case 'SINGUP_FAILED':
       return {
         ...state,
-        isLoadingSignup: true,
+        isLoadingSignup: false,
+        error: action.error,
       };
     default:
       return state;

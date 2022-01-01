@@ -5,7 +5,7 @@ import CardEvent from '../../components/CardEvent';
 import Floatingicon from '../../components/Floatingicon';
 import {useNavigation} from '@react-navigation/core';
 import SkeletonEvent from '../../components/Skeleton/SkeletonEvent';
-import Button from '../../components/button/Button';
+import Button from '../../components/button/Button2';
 import Buttonsign from '../../components/button/Buttonsign';
 import {connect} from 'react-redux';
 import CardEventMyEvent from '../../components/CardEventMyEvent';
@@ -28,10 +28,11 @@ const Event = props => {
       />
     );
   };
-  if (props.token == false) {
-    return (
-      <View style={{flex: 1}}>
-        <HeaderMain title_main="My Events" />
+
+  return (
+    <View style={{flex: 1}}>
+      <HeaderMain title_main="My Events" />
+      {!props.token ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={{fontSize: 24, color: '#214457', fontWeight: 'bold'}}>
             Sign In or Sign Up
@@ -57,26 +58,25 @@ const Event = props => {
             navigation={() => props.navigation.navigate('SignIn')}
           />
         </View>
-      </View>
-    );
-  } else {
-    return (
-      <View style={{flex: 1}}>
-        <HeaderMain title_main="My Events" />
-        <View>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={props.dataHome10}
-            renderItem={renderCard}
-            keyExtractor={(item, index) => index}
-          />
-        </View>
-        <SkeletonEvent />
+      ) : (
+        <>
+          <View style={{flex: 1}}>
+            <View>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={props.dataHome10}
+                renderItem={renderCard}
+                keyExtractor={(item, index) => index}
+              />
+            </View>
+            <SkeletonEvent />
 
-        <Floatingicon />
-      </View>
-    );
-  }
+            <Floatingicon />
+          </View>
+        </>
+      )}
+    </View>
+  );
 };
 
 const reduxDispatch = dispatch => ({

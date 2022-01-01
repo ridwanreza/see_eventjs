@@ -24,7 +24,7 @@ export default function Button(props) {
           borderRadius: 10,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: props.bg,
+          backgroundColor: '#214457',
         }}
         disabled={props.disabled}
         onPress={props.navigation}>

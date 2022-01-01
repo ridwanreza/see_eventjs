@@ -4,7 +4,7 @@ import HeaderMain from '../../components/header/HeaderMain';
 import CardPropImg from '../../components/CardPropImg';
 import CardProfile from '../../components/CardProfile';
 import {useNavigation} from '@react-navigation/core';
-import Button from '../../components/button/Button';
+import Button from '../../components/button/Button2';
 import Buttonsign from '../../components/button/Buttonsign';
 import {
   widthPercentageToDP as wp,
@@ -22,7 +22,9 @@ const Profile = props => {
   console.log('INI DATA SDAERI REDUCER', props.dataisi);
   const navigation = useNavigation();
   console.log('NILAI TOKEN', props.token);
-  if (props.token == false) {
+
+  // const remove = await AsyncStorage.removeItem('TOKEN');
+  if (!props.token) {
     return (
       <View style={{flex: 1}}>
         <HeaderMain title_main="My Events" />
@@ -134,8 +136,9 @@ const Profile = props => {
           iconleft="log-out-sharp"
           iconright="chevron-forward-outline"
           navigation={async () => {
-            props.delTOken();
+            await AsyncStorage.removeItem('TOKEN');
             props.navigation.navigate('Idx1');
+            props.delTOken();
           }}
         />
         <Text

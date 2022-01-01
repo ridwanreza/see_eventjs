@@ -1,7 +1,7 @@
 import {underline} from 'chalk';
 import React from 'react';
 import {View, Text, Pressable, StatusBar, Image} from 'react-native';
-import Button from '../../components/button/Button';
+import Button from '../../components/button/Button2';
 import Buttonsign from '../../components/button/Buttonsign';
 import {
   widthPercentageToDP as wp,
@@ -50,12 +50,12 @@ const Idx = props => {
           <View style={{marginVertical: 5}}>
             <Button
               text="Sign Up"
-              navigation={() => props.navigation.navigate('SignUp')}
+              navigation={() => props.navigation.navigate('SignUp2')}
             />
           </View>
           <Buttonsign
             text="Sign In"
-            navigation={() => props.navigation.navigate('SignIn')}
+            navigation={() => props.navigation.navigate('SignIn2')}
           />
           <Pressable
             style={{alignSelf: 'center'}}

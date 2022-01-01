@@ -18,14 +18,14 @@ const CardEvntContent = props => {
         <View style={styles.imgContainer}>
           <Image
             style={styles.img}
-            source={{uri: `${props.data.photoEvent}`}}
+            source={{uri: `${props.data?.photoEvent}`}}
           />
         </View>
       </TouchableOpacity>
       {/* CONTENT TEXT CONTAINER */}
       <View style={styles.txtContainer}>
         <View style={styles.compContainer}>
-          <CategoryButton categoryText={props.data.category.category} />
+          <CategoryButton categoryText={props.data?.category.category} />
           <View style={styles.iconContainer}>
             <TouchableOpacity style={styles.touchOpc}>
               <Icon name="share-2" size={30} color={'grey'} />
@@ -41,14 +41,16 @@ const CardEvntContent = props => {
         </View>
         <View style={styles.txtCont}>
           {/* DATE AND TIME */}
-          <Text>{props.data.eventDate}</Text>
+          <Text>{props.data?.eventDate}</Text>
           {/* EVENT TITLE */}
           <TouchableOpacity>
-            <Text style={styles.textEvent}>{props.data.title}</Text>
+            <Text style={styles.textEvent}>{props.data?.title}</Text>
           </TouchableOpacity>
 
           {/* EVENT OWNER*/}
-          <Text style={{color: '#999999'}}>By {props.data.user.firstName}</Text>
+          <Text style={{color: '#999999'}}>
+            By {props.data?.user?.firstName}
+          </Text>
         </View>
       </View>
     </View>

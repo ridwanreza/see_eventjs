@@ -1,6 +1,15 @@
 import {takeLatest, put} from 'redux-saga/effects';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {ToastAndroid} from 'react-native';
+
+const showToast = () => {
+  ToastAndroid.show('Login Success ', ToastAndroid.SHORT);
+};
+
+const showToastFailed = e => {
+  ToastAndroid.show(e, ToastAndroid.SHORT);
+};
 
 const storeToken = async value => {
   try {
@@ -31,13 +40,16 @@ function* login(action) {
     if (resLogin && resLogin.data) {
       yield storeToken(resLogin.data.token);
       // yield storeToken(resLogin.data);
-      yield put({type: 'LOGIN_SUCCESS', token: resLogin.data.token});
+      yield put({type: 'LOGIN_SUCCESS'});
+      yield put({type: 'SAVE_TOKEN', savetoken: resLogin.data.token});
       yield storePassword(action.data.password);
+      action.navigasi.navigate('GoToHomeScreen2');
+      showToast();
     }
   } catch (err) {
     console.log(err);
     yield put({type: 'LOGIN_FAILED'});
-    alert('Email or Password inccorect');
+    showToastFailed(err.response.data.message);
   }
 }
 

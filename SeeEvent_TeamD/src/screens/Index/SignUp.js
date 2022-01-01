@@ -29,7 +29,9 @@ const SignUp = props => {
         title_sec="Sign Up"
         navigation={() => props.navigation.navigate('Idx')}
       />
-      <ScrollView contentContainerStyle={{flexGrow: 1, height: hp('135%')}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{flexGrow: 1, height: hp('135%')}}>
         <View>
           <Text
             style={{
@@ -69,9 +71,14 @@ const SignUp = props => {
           </View>
           <View style={{marginTop: 10, marginBottom: 10}}>
             <Button
+              bg={props.isLoadingSignup ? 'grey' : '#214457'}
+              disabled={props.isLoadingSignup ? true : false}
               text="Sign Up"
               navigation={() =>
-                props.signup({fisrtname, lastname, email, password, confirm})
+                props.signup(
+                  {fisrtname, lastname, email, password, confirm},
+                  props.navigation,
+                )
               }
             />
           </View>
@@ -124,7 +131,8 @@ const SignUp = props => {
 };
 
 const reduxDispatchSignup = dispatch => ({
-  signup: dataSignup => dispatch({type: 'SIGNUP', data: dataSignup}),
+  signup: (dataSignup, nav) =>
+    dispatch({type: 'SIGNUP', data: dataSignup, navigasi: nav}),
 });
 
 const reduxState = state => ({

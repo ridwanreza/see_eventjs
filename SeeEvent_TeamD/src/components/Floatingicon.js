@@ -18,7 +18,7 @@ export default function Floatingicon() {
         bottom: 0,
         backgroundColor: '#214457',
         width: wp('14%'),
-        height: hp('7.5%'),
+        height: wp('14%'),
         borderRadius: 30,
         color: 'red',
         justifyContent: 'center',

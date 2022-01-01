@@ -6,47 +6,47 @@ function* getEventInHome(action) {
     console.log('GETEVENT START');
     const resGetEventHOme = yield axios({
       method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events/tody',
+      url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=7&nata=date',
     });
 
-    const resGetEventHOme2 = yield axios({
-      method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events/tomorrow',
-    });
+    // const resGetEventHOme2 = yield axios({
+    //   method: 'GET',
+    //   url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=1&nata=date',
+    // });
 
-    const resGetEventHOme3 = yield axios({
-      method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events/we',
-    });
+    // const resGetEventHOme3 = yield axios({
+    //   method: 'GET',
+    //   url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=2&nata=date',
+    // });
 
     const resGetEventHOme4 = yield axios({
       method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events/month/',
+      url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=3&nata=date',
     });
 
     const resGetEventHOme5 = yield axios({
       method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events/year/',
+      url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=4&nata=date',
     });
 
     const resGetEventHOme6 = yield axios({
       method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events/cat/7',
+      url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=5&nata=date',
     });
-    const resGetEventHOme7 = yield axios({
-      method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events/',
-    });
+    // const resGetEventHOme7 = yield axios({
+    //   method: 'GET',
+    //   url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=6&nata=date',
+    // });
 
     yield put({
       type: 'GETEVENT_START_SUCCES',
       data: resGetEventHOme.data.events,
-      data2: resGetEventHOme2.data.events,
-      data3: resGetEventHOme3.data.events,
+      // data2: resGetEventHOme2.data.events,
+      // data3: resGetEventHOme3.data.events,
       data4: resGetEventHOme4.data.events,
       data5: resGetEventHOme5.data.events,
       data6: resGetEventHOme6.data.events,
-      data7: resGetEventHOme7.data.events,
+      // data7: resGetEventHOme7.data.events,
     });
   } catch (err) {
     console.log('EROR GET EVENT FROM API:', err);

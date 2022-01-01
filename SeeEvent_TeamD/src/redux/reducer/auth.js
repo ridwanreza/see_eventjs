@@ -1,7 +1,7 @@
 const initialState = {
   isLoading: false,
   isLoggedIn: false,
-  token: '',
+  token: null,
 };
 
 const auth = (state = initialState, action) => {
@@ -11,7 +11,6 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoading: true,
         isLoggedIn: true,
-        token: '',
       };
     case 'SAVE_TOKEN':
       return {
@@ -21,29 +20,26 @@ const auth = (state = initialState, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        token: action.token,
         isLoading: false,
         isLoggedIn: false,
       };
     case 'LOGIN_FAILED':
       return {
         ...state,
-        isLoading: true,
-        isLoggedIn: true,
+        isLoading: false,
+        isLoggedIn: false,
       };
     case 'REMOVE_TOKEN':
       return {
         ...state,
-        token: action.token,
         isLoading: false,
         isLoggedIn: false,
-        token: '',
       };
     case 'REMOVE_TOKEN_SUCCESS':
       return {
         ...state,
-        isLoading: true,
-        token: '',
+        isLoading: false,
+        token: null,
       };
     default:
       return state;
