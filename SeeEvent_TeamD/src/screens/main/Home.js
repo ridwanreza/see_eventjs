@@ -22,12 +22,12 @@ const Home = props => {
     AsyncStorage.getItem('PASSWORD').then(e => console.log(e));
   }, []);
 
-  const gabungan = props.dataHome.concat(
-    props.dataHome2,
-    props.dataHome3,
-    props.dataHome4,
-    props.dataHome5,
-  );
+  // const gabungan = props.dataHome.concat(
+  //   props.dataHome2,
+  //   props.dataHome3,
+  //   props.dataHome4,
+  //   props.dataHome5,
+  // );
 
   console.log('INI DATA TOdayyyyyy DATA ', props.dataHome6);
   const renderCard = ({item}) => {
@@ -72,13 +72,13 @@ const Home = props => {
         </View>
         {props.isLoading == false ? (
           <View style={{height: hp('52%')}}>
-            <FlatList
+            {/* <FlatList
               showsHorizontalScrollIndicator={false}
               horizontal={true}
               data={gabungan}
               renderItem={renderCard}
               keyExtractor={(item, index) => index}
-            />
+            /> */}
           </View>
         ) : (
           <View style={{flexDirection: 'row', marginVertical: 10}}>

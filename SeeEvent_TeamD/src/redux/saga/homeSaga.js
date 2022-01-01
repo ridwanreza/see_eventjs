@@ -4,30 +4,30 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 function* getEventInHome(action) {
   try {
     console.log('GETEVENT START');
-    const resGetEventHOme = yield axios({
-      method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=7&nata=date',
-    });
+    // const resGetEventHOme = yield axios({
+    //   method: 'GET',
+    //   url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=7&nata=date',
+    // });
 
     // const resGetEventHOme2 = yield axios({
     //   method: 'GET',
     //   url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=1&nata=date',
     // });
 
-    // const resGetEventHOme3 = yield axios({
+    const resGetEventHOme3 = yield axios({
+      method: 'GET',
+      url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=2&nata=date',
+    });
+
+    // const resGetEventHOme4 = yield axios({
     //   method: 'GET',
-    //   url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=2&nata=date',
+    //   url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=3&nata=date',
     // });
 
-    const resGetEventHOme4 = yield axios({
-      method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=3&nata=date',
-    });
-
-    const resGetEventHOme5 = yield axios({
-      method: 'GET',
-      url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=4&nata=date',
-    });
+    // const resGetEventHOme5 = yield axios({
+    //   method: 'GET',
+    //   url: 'https://timdevent.herokuapp.com/events?page=1&waktu=month&kategori=4&nata=date',
+    // });
 
     const resGetEventHOme6 = yield axios({
       method: 'GET',
@@ -40,11 +40,11 @@ function* getEventInHome(action) {
 
     yield put({
       type: 'GETEVENT_START_SUCCES',
-      data: resGetEventHOme.data.events,
+      // data: resGetEventHOme.data.events,
       // data2: resGetEventHOme2.data.events,
-      // data3: resGetEventHOme3.data.events,
-      data4: resGetEventHOme4.data.events,
-      data5: resGetEventHOme5.data.events,
+      data3: resGetEventHOme3.data.events,
+      // data4: resGetEventHOme4.data.events,
+      // data5: resGetEventHOme5.data.events,
       data6: resGetEventHOme6.data.events,
       // data7: resGetEventHOme7.data.events,
     });
